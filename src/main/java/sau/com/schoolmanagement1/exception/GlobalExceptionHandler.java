@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -28,6 +29,7 @@ public class GlobalExceptionHandler {
                 .message(ex.getMessage())
                 .path(request.getRequestURI())
                 .requestId(UUID.randomUUID().toString())
+                .validationErrors(Collections.emptyMap())
                 .build();
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
@@ -47,6 +49,7 @@ public class GlobalExceptionHandler {
                 .message(ex.getMessage())
                 .path(request.getRequestURI())
                 .requestId(UUID.randomUUID().toString())
+                .validationErrors(Collections.emptyMap())
                 .build();
 
         return ResponseEntity.status(HttpStatus.CONFLICT)

@@ -15,10 +15,11 @@ public class CourseMapper {
 
         return new CourseDTO(
                 course.getId(),
+                course.getCourseCode(),
                 course.getTitle(),
                 course.getDescription(),
-                course.getSemester(),
-                course.getCourseCode()
+                course.getSemester()
+
         );
     }
 
@@ -29,10 +30,10 @@ public class CourseMapper {
 
         Course course = new Course();
         course.setId(courseDTO.getId());
+        course.setCourseCode(courseDTO.getCourseCode());
         course.setTitle(courseDTO.getTitle());
         course.setDescription(courseDTO.getDescription());
         course.setSemester(courseDTO.getSemester());
-        course.setCourseCode(courseDTO.getCourseCode());
 
         return course;
     }

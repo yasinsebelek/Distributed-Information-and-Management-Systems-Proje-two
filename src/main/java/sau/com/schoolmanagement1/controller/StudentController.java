@@ -27,23 +27,24 @@ public class StudentController {
 
     @GetMapping
     public ResponseEntity<List<StudentDTO>> getAllStudents() {
-        List<StudentDTO> students = studentService.getAllStudents();
-        return ResponseEntity.status(HttpStatus.OK).body(students);
+        List<StudentDTO> studentDTOS = studentService.getAllStudents();
+        return ResponseEntity.status(HttpStatus.OK).body(studentDTOS);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<StudentDTO> getStudentById( @PathVariable Long id) {
-        StudentDTO student = studentService.getStudentById(id);
-        return ResponseEntity.status(HttpStatus.OK).body(student);
+        StudentDTO studentDTO = studentService.getStudentById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(studentDTO);
 
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<StudentDTO> updateStudent(@PathVariable Long id,
                                     @Valid @RequestBody StudentDTO studentDTO) {
-        StudentDTO updatedStudent = studentService.updateStudent(id, studentDTO);
 
-        return ResponseEntity.status(HttpStatus.OK).body(updatedStudent);
+        StudentDTO updatedStudentDTO = studentService.updateStudent(id, studentDTO);
+
+        return ResponseEntity.status(HttpStatus.OK).body(updatedStudentDTO);
 
     }
 

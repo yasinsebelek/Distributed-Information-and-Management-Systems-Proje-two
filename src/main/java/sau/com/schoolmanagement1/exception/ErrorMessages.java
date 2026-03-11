@@ -12,4 +12,12 @@ public final class ErrorMessages {
         return "Student already exists with student number: " + studentNumber;
     }
 
+    public static String courseNotFound(Long id) {
+        return "Course not found with id: " + id;
+    }
+
+    public static String courseAlreadyExists(String courseCode) {
+        return "Student already exists with student number: " + courseCode;
+    }
+
 }
