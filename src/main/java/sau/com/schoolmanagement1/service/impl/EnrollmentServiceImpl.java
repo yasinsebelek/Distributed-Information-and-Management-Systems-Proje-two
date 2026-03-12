@@ -1,6 +1,6 @@
 package sau.com.schoolmanagement1.service.impl;
 
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 import sau.com.schoolmanagement1.dto.EnrollmentRequestDTO;
 import sau.com.schoolmanagement1.dto.EnrollmentResponseDTO;
@@ -85,7 +85,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     }
 
     @Override
-    @Transactional()
+    @Transactional(readOnly = true)
     public List<EnrollmentResponseDTO> getAllEnrollments() {
         List<Enrollment> enrollments = enrollmentRepository.findAll();
 
@@ -94,7 +94,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 
 
     @Override
-    @Transactional()
+    @Transactional(readOnly = true)
     public EnrollmentResponseDTO getEnrollmentById(Long id) {
 
         Enrollment enrollment = enrollmentRepository.findById(id)
@@ -103,7 +103,6 @@ public class EnrollmentServiceImpl implements EnrollmentService {
                 ));
 
         return EnrollmentMapper.toDTO(enrollment);
-
     }
 
     @Override
@@ -171,6 +170,42 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 
         enrollmentRepository.delete(enrollment);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public     List<EnrollmentResponseDTO> getEnrollmentsByStudentId(Long studentId){
+        studentRepository.findById(studentId)
+                .orElseThrow(()->
+                        new ResourceNotFoundException(
+                                ErrorMessages.studentNotFound(studentId)
+                        ));
+
+        List<Enrollment> enrollments =
+                enrollmentRepository.findByStudentId(studentId);
+
+        return EnrollmentMapper.toDTOList(enrollments);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<EnrollmentResponseDTO> getEnrollmentsByCourseId(Long courseId){
+
+        courseRepository.findById(courseId)
+                .orElseThrow(()->
+                        new ResourceNotFoundException(
+                                ErrorMessages.courseNotFound(courseId)
+                        ));
+
+        List<Enrollment> enrollments =
+                enrollmentRepository.findByCourseId(courseId);
+
+        return EnrollmentMapper.toDTOList(enrollments);
+
+    }
+
+
+
+
 
 }
 

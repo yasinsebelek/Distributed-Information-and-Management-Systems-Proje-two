@@ -21,7 +21,8 @@ public class EnrollmentMapper {
                 enrollment.getTuition(),
                 enrollment.getAttendance(),
                 enrollment.getStudent().getStudentNumber(),
-                enrollment.getStudent().getFirstName() + " " + enrollment.getStudent().getLastName(),
+                enrollment.getStudent()
+                                .getFirstName() + " " + enrollment.getStudent().getLastName(),
                 enrollment.getCourse().getTitle(),
                 enrollment.getCourse().getCourseCode(),
                 enrollment.getCourse().getSemester()

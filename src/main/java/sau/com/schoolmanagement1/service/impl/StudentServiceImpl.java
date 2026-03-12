@@ -1,6 +1,7 @@
 package sau.com.schoolmanagement1.service.impl;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import sau.com.schoolmanagement1.dto.StudentDTO;
 import sau.com.schoolmanagement1.exception.ErrorMessages;
 import sau.com.schoolmanagement1.exception.ResourceAlreadyException;
@@ -37,6 +38,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<StudentDTO> getAllStudents() {
 
         List<Student> students = studentRepository.findAll();
@@ -44,6 +46,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public StudentDTO getStudentById(Long id) {
 
         Student student = studentRepository.findById(id)

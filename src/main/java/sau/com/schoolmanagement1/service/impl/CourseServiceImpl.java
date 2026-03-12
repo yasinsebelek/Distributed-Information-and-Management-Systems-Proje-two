@@ -1,6 +1,7 @@
 package sau.com.schoolmanagement1.service.impl;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import sau.com.schoolmanagement1.dto.CourseDTO;
 import sau.com.schoolmanagement1.exception.ResourceAlreadyException;
 import sau.com.schoolmanagement1.exception.ResourceNotFoundException;
@@ -39,17 +40,19 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public CourseDTO getCourseById(Long id) {
         Course course = courseRepository.findById(id)
                 .orElseThrow(() ->
                         new ResourceNotFoundException(
-                                ErrorMessages.studentNotFound(id)
+                                ErrorMessages.courseNotFound(id)
                         ));
 
         return CourseMapper.toDTO(course);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<CourseDTO> getAllStudents() {
 
         List<Course> course = courseRepository.findAll();

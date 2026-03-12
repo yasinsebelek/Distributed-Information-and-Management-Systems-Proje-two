@@ -16,4 +16,9 @@ public interface EnrollmentService {
     EnrollmentResponseDTO updateEnrollment(Long id, EnrollmentRequestDTO enrollmentRequestDTO);
 
     void deleteEnrollment(Long id);
+
+    List<EnrollmentResponseDTO> getEnrollmentsByStudentId(Long studentId);
+
+    List<EnrollmentResponseDTO> getEnrollmentsByCourseId(Long courseId);
+
 }
