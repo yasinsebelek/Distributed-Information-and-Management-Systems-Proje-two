@@ -2,6 +2,10 @@ spring:
   application:
     name: school-management-1
 
+  output:
+    ansi:
+      enabled: always
+
   datasource:
     url: jdbc:postgresql://localhost:5432/schooldb
     username: yasin
@@ -11,10 +15,16 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    open-in-view: false #  Controller’da DB sorgusu yapılmasını engeller
-    show-sql: true
+    open-in-view: false
+    show-sql: false
     properties:
       hibernate:
-        format_sql: true
+        format_sql: false
+
 server:
   port: 80
+
+logging:
+  level:
+    root: INFO
+    sau.com.schoolmanagement1: INFO
