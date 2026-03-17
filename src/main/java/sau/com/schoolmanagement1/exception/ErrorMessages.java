@@ -19,7 +19,7 @@ public final class ErrorMessages {
     }
 
     public static String courseAlreadyExists(String courseCode) {
-        return "Student already exists with student number: " + courseCode;
+        return "Course already exists with course code: " + courseCode;
     }
 
     public static String enrollmentAlreadyExists(Long studentId, Long courseId, Integer year, Term term) {

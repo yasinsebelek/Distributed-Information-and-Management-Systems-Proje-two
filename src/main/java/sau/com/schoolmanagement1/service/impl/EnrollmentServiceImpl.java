@@ -144,6 +144,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     }
 
     @Override
+    @Transactional
     public EnrollmentResponseDTO updateEnrollment(Long id,
                                                   EnrollmentRequestDTO enrollmentRequestDTO) {
 
